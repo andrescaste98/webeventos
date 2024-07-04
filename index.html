@@ -47,7 +47,15 @@
             <label><input type="checkbox" name="sesion_informativa"> Sesión informativa</label><br>
             <label><input type="checkbox" name="examen_diagnostico"> Examen Diagnóstico</label><br>
             <label><input type="checkbox" name="entrega_resultados"> Entrega de resultados</label><br><br>
-            
+
+            <!-- Reemplazar los checkboxes por una lista desplegable -->
+            <label for="modalidadGenerador">Modalidad:</label>
+            <select id="modalidadGenerador" name="modalidadGenerador">
+                <option value="disable">Seleccionar</option>
+                <option value="virtual">Virtual</option>
+                <option value="presencial">Presencial</option>
+            </select><br><br>
+
             <button type="submit">Generar Texto</button>
         </form>
 
@@ -67,6 +75,14 @@
             <label for="alumno">Alumno:</label>
             <input type="text" id="alumno" name="alumno" required><br><br>
             
+            <!-- Reemplazar los checkboxes por una lista desplegable -->
+            <label for="modalidadReuniones">Modalidad:</label>
+            <select id="modalidadReuniones" name="modalidadReuniones">
+                <option value="disable">Seleccionar</option>
+                <option value="virtual">Virtual</option>
+                <option value="presencial">Presencial</option>
+            </select><br><br>
+
             <button type="submit">Generar Texto</button>
         </form>
 

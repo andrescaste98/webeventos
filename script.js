@@ -9,6 +9,8 @@ document.getElementById("formularioGenerador").addEventListener("submit", functi
     var edad = document.getElementById("edad").value;
     var gradoEscolarTexto = document.getElementById("gradoEscolarTexto").value;
     var gradoEscolarSelect = document.getElementById("gradoEscolar").value;
+    var modalidadGenerador = document.getElementById("modalidadGenerador").value;
+
 
     // Obtener día de la semana (0: Domingo, 1: Lunes, ..., 6: Sábado)
     var diaSemana = fechaSeleccionada.getDay();
@@ -26,6 +28,9 @@ document.getElementById("formularioGenerador").addEventListener("submit", functi
     var sesionInformativa = document.getElementById("formularioGenerador").querySelector('input[name="sesion_informativa"]').checked;
     var examenDiagnostico = document.getElementById("formularioGenerador").querySelector('input[name="examen_diagnostico"]').checked;
     var entregaResultados = document.getElementById("formularioGenerador").querySelector('input[name="entrega_resultados"]').checked;
+
+    // Obtener valor de la lista desplegable para la modalidad
+    // var modalidad = document.getElementById("modalidadGenerador").value;
 
     // Validar que al menos un checkbox esté seleccionado
     if (!sesionInformativa && !examenDiagnostico && !entregaResultados && !matematicas && !lectura && !ingles) {
@@ -57,7 +62,7 @@ document.getElementById("formularioGenerador").addEventListener("submit", functi
         }
     }
 
-    // Agregar los checkboxes seleccionados al inicio del texto generado
+    // Agregar los checkboxes seleccionados de materias al inicio del texto generado
     if (matematicas) {
         textoGenerado += "Matemáticas ";
     }
@@ -68,8 +73,22 @@ document.getElementById("formularioGenerador").addEventListener("submit", functi
         textoGenerado += "Inglés";
     }
 
+    if (modalidadGenerador === "disable") {
+        alert("Debes seleccionar una modalidad.");
+        return; // Detener la ejecución del código
+    }
+
+    // // Agregar la modalidad de la sesión al texto generado
+    // if (modalidad === "virtual") {
+    //     textoGenerado += "<br>🖥 *Modalidad: Virtual* 🖥";
+    // } else if (modalidad === "presencial") {
+    //     textoGenerado += "<br>🏫 *Modalidad: Presencial* 🏫";
+    // } else if (modalidad === "hibrida") {
+    //     textoGenerado += "<br>🔄 *Modalidad: Híbrida* 🔄";
+    // }
+
     // Agregar el texto principal después de los checkboxes
-    textoGenerado += `<br><br>🧑🏻 *${nombre}*<br>🗓 *${formatoFecha(fechaSeleccionada)}*<br>🕒 *${formatoHora(fechaSeleccionada)}*<br>-------------------------<br>${alumno}, ${edad} años<br>${gradoEscolarTexto}° de ${gradoEscolarSelect}`;        
+    textoGenerado += `<br><br>🧑🏻 *${nombre}*<br>🗓 *${formatoFecha(fechaSeleccionada)}*<br>🕒 *${formatoHora(fechaSeleccionada)}*<br>${modalidadGenerador}<br>-------------------------<br>${alumno}, ${edad} años<br>${gradoEscolarTexto}° de ${gradoEscolarSelect}`;
 
     // Mostrar el texto generado en la página
     document.getElementById("resultadoGenerador").innerHTML = textoGenerado;
@@ -88,6 +107,8 @@ document.getElementById("formularioReuniones").addEventListener("submit", functi
     // Obtener valores de los campos
     var fecha = new Date(document.getElementById("fechaReuniones").value + "T" + document.getElementById("horaReuniones").value);
     var alumno = document.getElementById("alumno").value;
+    var modalidadReuniones = document.getElementById("gradoEscolar").value;
+
 
     // Obtener día de la semana (0: Domingo, 1: Lunes, ..., 6: Sábado)
     var diaSemana = fecha.getDay();
@@ -98,8 +119,20 @@ document.getElementById("formularioReuniones").addEventListener("submit", functi
         return; // Detener la ejecución del código
     }
 
+    // Obtener valor de la lista desplegable para la modalidad
+    var modalidad = document.getElementById("modalidadReuniones").value;
+
     // Construir el texto generado
     var textoGenerado = `Reunión de Avance para ${alumno} programada para el ${formatoFecha(fecha)} a las ${formatoHora(fecha)}.`;
+
+    // Agregar la modalidad de la reunión al texto generado
+    if (modalidad === "virtual") {
+        textoGenerado += "<br>🖥 *Modalidad: Virtual* 🖥";
+    } else if (modalidad === "presencial") {
+        textoGenerado += "<br>🏫 *Modalidad: Presencial* 🏫";
+    } else if (modalidad === "hibrida") {
+        textoGenerado += "<br>🔄 *Modalidad: Híbrida* 🔄";
+    }
 
     // Mostrar el texto generado en la página
     document.getElementById("resultadoReuniones").innerHTML = `<p>${textoGenerado}</p>`;

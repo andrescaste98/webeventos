@@ -86,4 +86,12 @@ button#btnCopiarGenerador, button#btnCopiarReuniones {
   .interruptor-input:checked + .interruptor-label::before {
     transform: translateX(26px);
   }
-      
+      /* Estilo para los checkboxes de modalidad */
+label {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+input[type="checkbox"] {
+    margin-right: 5px;
+}
