@@ -1,5 +1,3 @@
-// script.js
-
 // Generador de Texto Personalizado
 document.getElementById("formularioGenerador").addEventListener("submit", function(event) {
     event.preventDefault(); // Evitar el envío del formulario por defecto
@@ -42,35 +40,39 @@ document.getElementById("formularioGenerador").addEventListener("submit", functi
     }
 
     // Construir el texto generado
-    var textoGenerado = `Hola ${nombre}, alumno ${alumno} de ${edad} años de edad y cursando ${gradoEscolarTexto}° de  ${gradoEscolarSelect}, tu evento está programado para el ${formatoFecha(fechaSeleccionada)} a las ${formatoHora(fechaSeleccionada)}.`;
+    var textoGenerado = "";
 
-    // Agregar las asignaturas seleccionadas al texto generado
-    var asignaturas = [];
-    if (matematicas) asignaturas.push("Matemáticas");
-    if (lectura) asignaturas.push("Lectura");
-    if (ingles) asignaturas.push("Inglés");
-
-    if (asignaturas.length > 0) {
-        textoGenerado += "<br>Asignaturas seleccionadas: " + asignaturas.join(", ");
-    }
-
-    // Agregar los checkboxes seleccionados al texto generado
+    // Agregar los checkboxes seleccionados al inicio del texto generado
     if (sesionInformativa && examenDiagnostico) {
-        textoGenerado += "<br>Sesión Informativa y Examen Diagnóstico seleccionados.";
+        textoGenerado += "ℹ 📝 *SESIÓN INFORMATIVA Y EXAMEN DIAGNÓSTICO* ℹ 📝<br>";
     } else {
         if (sesionInformativa) {
-            textoGenerado += "<br>Sesión informativa seleccionada.";
+            textoGenerado += "ℹ *SESIÓN INFORMATIVA* ℹ<br>";
         }
         if (examenDiagnostico) {
-            textoGenerado += "<br>Examen Diagnóstico seleccionado.";
+            textoGenerado += "📝 *EXAMEN DIAGNÓSTICO* 📝<br>";
         }
         if (entregaResultados) {
-            textoGenerado += "<br>Entrega de resultados seleccionada.";
+            textoGenerado += "🔎 *ENTREGA DE RESULTADOS* 🔎<br>";
         }
     }
 
+    // Agregar los checkboxes seleccionados al inicio del texto generado
+    if (matematicas) {
+        textoGenerado += "Matemáticas ";
+    }
+    if (lectura) {
+        textoGenerado += " Lectura ";
+    }
+    if (ingles) {
+        textoGenerado += "Inglés";
+    }
+
+    // Agregar el texto principal después de los checkboxes
+    textoGenerado += `<br><br>🧑🏻 *${nombre}*<br>🗓 *${formatoFecha(fechaSeleccionada)}*<br>🕒 *${formatoHora(fechaSeleccionada)}*<br>-------------------------<br>${alumno}, ${edad} años<br>${gradoEscolarTexto}° de ${gradoEscolarSelect}`;        
+
     // Mostrar el texto generado en la página
-    document.getElementById("resultadoGenerador").innerHTML = `<p>${textoGenerado}</p>`;
+    document.getElementById("resultadoGenerador").innerHTML = textoGenerado;
 
     // Copiar texto generado al portapapeles
     copiarTextoAlPortapapeles(textoGenerado);
@@ -175,4 +177,3 @@ function openTab(evt, tabName) {
 
 // Establecer la primera pestaña activa al cargar la página
 document.getElementsByClassName("tablinks")[0].click();
-
