@@ -19,7 +19,8 @@
         <form id="formularioGenerador">
             <label><input type="checkbox" id="sesion_informativa" name="sesion_informativa"><span>Sesión informativa</span></label>
             <label><input type="checkbox" id="examen_diagnostico" name="examen_diagnostico"><span>Examen Diagnóstico</span></label>
-            <label><input type="checkbox" id="entrega_resultados" name="entrega_resultados"><span>Entrega de resultados</span></label><br><br>
+            <label><input type="checkbox" id="entrega_resultados" name="entrega_resultados"><span>Entrega de resultados</span></label>
+
 
             <label for="fechaGenerador">Fecha:</label>
             <input type="date" id="fechaGenerador" name="fechaGenerador" required>
@@ -54,14 +55,18 @@
             <label for="modalidadGenerador">Modalidad:</label>
             <select id="modalidadGenerador" name="modalidadGenerador">
                 <option value="" disabled selected >Seleccionar</option>
-                <option value="virtual">Virtual</option>
-                <option value="presencial">Presencial</option>
+                <option value="Virtual">Virtual</option>
+                <option value="Presencial">Presencial</option>
             </select><br><br>
 
-            <button type="submit">Generar Texto</button>
+            <button type="submit"><i class="fa-solid fa-message"></i> Generar Texto</button>
             <button id="btnCopiarGenerador">
                 <i class="fa-solid fa-copy"></i> Copiar
             </button>
+            <button type="reset" id="btnResetGenerador">
+                <i class="fa-solid fa-delete-left"></i> Limpiar
+            </button><br><br>
+
         </form>
 
         <div id="resultadoGenerador"></div>
@@ -82,18 +87,21 @@
             <!-- Reemplazar los checkboxes por una lista desplegable -->
             <label for="modalidadReuniones">Modalidad:</label>
             <select id="modalidadReuniones" name="modalidadReuniones">
-                <option value="disable">Seleccionar</option>
-                <option value="virtual">Virtual</option>
+                <option value="virtual" selected >Virtual</option>
                 <option value="presencial">Presencial</option>
             </select><br><br>
 
             <button type="submit">Generar Texto</button>
+            <button id="btnCopiarReuniones">
+                <i class="fa-solid fa-copy"></i> Copiar
+            </button>
+    
         </form>
+
 
         <div id="resultadoReuniones"></div>
 
-        <button id="btnCopiarReuniones">Copiar texto generado</button>
-    </div>
+</div>
 
     <script src="script.js"></script>
     <script>

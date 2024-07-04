@@ -1,7 +1,7 @@
 // Generador de Texto Personalizado
+
 document.getElementById("formularioGenerador").addEventListener("submit", function(event) {
     event.preventDefault(); // Evitar el envío del formulario por defecto
-
     // Obtener valores de los campos
     var fechaSeleccionada = new Date(document.getElementById("fechaGenerador").value + "T" + document.getElementById("horaGenerador").value);
     var nombre = document.getElementById("nombreGenerador").value;
@@ -10,6 +10,7 @@ document.getElementById("formularioGenerador").addEventListener("submit", functi
     var gradoEscolarTexto = document.getElementById("gradoEscolarTexto").value;
     var gradoEscolarSelect = document.getElementById("gradoEscolar").value;
     var modalidadGenerador = document.getElementById("modalidadGenerador").value;
+
 
 
     // Obtener día de la semana (0: Domingo, 1: Lunes, ..., 6: Sábado)
@@ -73,13 +74,13 @@ document.getElementById("formularioGenerador").addEventListener("submit", functi
         textoGenerado += "Inglés";
     }
 
-    if (modalidadGenerador === "disable") {
+    if (modalidadGenerador === "") {
         alert("Debes seleccionar una modalidad.");
         return; // Detener la ejecución del código
     }
 
     // Agregar el texto principal después de los checkboxes
-    textoGenerado += `<br><br>🧑🏻 *${nombre}*<br>🗓 *${formatoFecha(fechaSeleccionada)}*<br>🕒 *${formatoHora(fechaSeleccionada)}*<br>${modalidadGenerador}<br>-------------------------<br>${alumno}, ${edad} años<br>${gradoEscolarTexto}° de ${gradoEscolarSelect}`;
+    textoGenerado += `<br><br>🧑🏻 *${nombre}*<br>🗓 *${formatoFecha(fechaSeleccionada)}*<br>🕒 *${formatoHora(fechaSeleccionada)}*<br>📍 *${modalidadGenerador}*<br>-------------------------<br>*Información del alumno:*<br><br>${alumno}, ${edad} años<br>${gradoEscolarTexto}° de ${gradoEscolarSelect}`;
 
     // Mostrar el texto generado en la página
     document.getElementById("resultadoGenerador").innerHTML = textoGenerado;
@@ -89,7 +90,44 @@ document.getElementById("formularioGenerador").addEventListener("submit", functi
 
     // Mostrar mensaje de copiado
     mostrarMensajeCopiado("resultadoGenerador");
+
+//     {document.getElementById("btnResetGenerador").addEventListener("reset")
+//     //     document.getElementById('formularioGenerador').reset();
+//     //     document.getElementById("resultadoGenerador").innerHTML = "as";
+//     alert("test");
+// }
+
+
+
 });
+
+// Obtener el botón por su ID
+var btnResetGenerador = document.getElementById('btnResetGenerador');
+
+// Agregar un listener para el evento click
+btnResetGenerador.addEventListener('click', function() {
+    // Llamar a la función que deseas ejecutar al hacer clic en el botón
+    limpiarGenerador(); // Esta función deberías definirla más abajo en tu archivo JS
+});
+
+// Definir la función que se ejecutará al hacer clic en el botón
+function limpiarGenerador() {
+    // Aquí puedes colocar el código para limpiar o resetear lo que necesites
+    document.getElementById("resultadoGenerador").innerHTML = "";
+    console.log('Se ha limpiado el generador'); // Ejemplo de mensaje en consola
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 // Reuniones de Avance
 document.getElementById("formularioReuniones").addEventListener("submit", function(event) {
