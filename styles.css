@@ -1,10 +1,31 @@
 /* styles.css */
+body{
+    font-family: "Comfortaa", sans-serif;
+}
+
+/* S.I. E.D. y E.R. */
+
+input[type="checkbox"] + span {
+    font-weight: 900; 
+}
+
+
+#gradoEscolarTexto, #edad {
+width: 40px;
+}
 
 /* Estilos básicos para pestañas */
 .tab {
     overflow: hidden;
     border: 1px solid #ccc;
     background-color: #f1f1f1;
+}
+
+
+button{
+    font-family: "Comfortaa", sans-serif;
+    font-weight: 900; 
+
 }
 
 .tab button {
@@ -52,40 +73,6 @@ button#btnCopiarGenerador, button#btnCopiarReuniones {
     display: none;
   }
   
-  .interruptor-label {
-    display: block;
-    overflow: hidden;
-    cursor: pointer;
-    border: 1px solid #ccc;
-    border-radius: 17px;
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 60px;
-    height: 34px;
-    background-color: #ccc;
-    transition: background-color 0.3s ease;
-  }
-  
-  .interruptor-input:checked + .interruptor-label {
-    background-color: #2196F3;
-  }
-  
-  .interruptor-label::before {
-    content: '';
-    position: absolute;
-    top: 3px;
-    left: 3px;
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background-color: white;
-    transition: transform 0.3s ease;
-  }
-  
-  .interruptor-input:checked + .interruptor-label::before {
-    transform: translateX(26px);
-  }
       /* Estilo para los checkboxes de modalidad */
 label {
     display: inline-block;
@@ -94,4 +81,6 @@ label {
 
 input[type="checkbox"] {
     margin-right: 5px;
+
 }
+

@@ -31,7 +31,7 @@ document.getElementById("formularioGenerador").addEventListener("submit", functi
 
     // Obtener valor de la lista desplegable para la modalidad
     // var modalidad = document.getElementById("modalidadGenerador").value;
-
+ 
     // Validar que al menos un checkbox esté seleccionado
     if (!sesionInformativa && !examenDiagnostico && !entregaResultados && !matematicas && !lectura && !ingles) {
         alert("Debes seleccionar al menos una opción (sesión informativa, examen diagnóstico, entrega de resultados o asignaturas).");
@@ -77,15 +77,6 @@ document.getElementById("formularioGenerador").addEventListener("submit", functi
         alert("Debes seleccionar una modalidad.");
         return; // Detener la ejecución del código
     }
-
-    // // Agregar la modalidad de la sesión al texto generado
-    // if (modalidad === "virtual") {
-    //     textoGenerado += "<br>🖥 *Modalidad: Virtual* 🖥";
-    // } else if (modalidad === "presencial") {
-    //     textoGenerado += "<br>🏫 *Modalidad: Presencial* 🏫";
-    // } else if (modalidad === "hibrida") {
-    //     textoGenerado += "<br>🔄 *Modalidad: Híbrida* 🔄";
-    // }
 
     // Agregar el texto principal después de los checkboxes
     textoGenerado += `<br><br>🧑🏻 *${nombre}*<br>🗓 *${formatoFecha(fechaSeleccionada)}*<br>🕒 *${formatoHora(fechaSeleccionada)}*<br>${modalidadGenerador}<br>-------------------------<br>${alumno}, ${edad} años<br>${gradoEscolarTexto}° de ${gradoEscolarSelect}`;
@@ -178,7 +169,7 @@ function copiarTextoAlPortapapeles(texto) {
 // Función para mostrar mensaje de copiado
 function mostrarMensajeCopiado(idResultado) {
     var mensajeCopiado = document.createElement("div");
-    mensajeCopiado.textContent = "Texto generado copiado al portapapeles.";
+    // mensajeCopiado.textContent = "Texto generado copiado al portapapeles.";
     document.getElementById(idResultado).appendChild(mensajeCopiado);
 }
 
