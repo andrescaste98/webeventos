@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generador de Texto Personalizado</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Generador de Texto Personalizado</h1>
+    <div class="tab">
+        <button class="tablinks" onclick="openTab(event, 'generador')">Generador</button>
+        <button class="tablinks" onclick="openTab(event, 'reuniones')">Reuniones de Avance</button>
+    </div>
+
+    <div id="generador" class="tabcontent">
+        <form id="formularioGenerador">
+            <label for="fechaGenerador">Fecha:</label>
+            <input type="date" id="fechaGenerador" name="fechaGenerador" required><br><br>
+            
+            <label for="horaGenerador">Hora:</label>
+            <input type="time" id="horaGenerador" name="horaGenerador" required><br><br>
+            
+            <label for="nombreGenerador">Nombre:</label>
+            <input type="text" id="nombreGenerador" name="nombreGenerador" required><br><br>
+
+            <label for="alumnoGenerador">Alumno:</label>
+            <input type="text" id="alumnoGenerador" name="alumnoGenerador" required><br><br>
+
+            <label for="edad">Edad:</label>
+            <input type="number" id="edad" name="edad" required><br><br>
+
+            <label>Grado Escolar:</label><br>
+            <input type="number" id="gradoEscolarTexto" name="gradoEscolarTexto" placeholder="Grado escolar"><br><br>
+            <select id="gradoEscolar" name="gradoEscolar">
+                <option value="Kinder">Kinder</option>
+                <option value="Primaria">Primaria</option>
+                <option value="Secundaria">Secundaria</option>
+                <option value="Preparatoria">Preparatoria</option>
+                <option value="Otro">Otro</option>
+            </select><br><br>
+
+            <label><input type="checkbox" name="matematicas"> Matemáticas</label><br>
+            <label><input type="checkbox" name="lectura"> Lectura</label><br>
+            <label><input type="checkbox" name="ingles"> Inglés</label><br><br>
+
+            <label><input type="checkbox" name="sesion_informativa"> Sesión informativa</label><br>
+            <label><input type="checkbox" name="examen_diagnostico"> Examen Diagnóstico</label><br>
+            <label><input type="checkbox" name="entrega_resultados"> Entrega de resultados</label><br><br>
+            
+            <button type="submit">Generar Texto</button>
+        </form>
+
+        <div id="resultadoGenerador"></div>
+
+        <button id="btnCopiarGenerador">Copiar texto generado</button>
+    </div>
+
+    <div id="reuniones" class="tabcontent">
+        <form id="formularioReuniones">
+            <label for="fechaReuniones">Fecha:</label>
+            <input type="date" id="fechaReuniones" name="fechaReuniones" required><br><br>
+            
+            <label for="horaReuniones">Hora:</label>
+            <input type="time" id="horaReuniones" name="horaReuniones" required><br><br>
+            
+            <label for="alumno">Alumno:</label>
+            <input type="text" id="alumno" name="alumno" required><br><br>
+            
+            <button type="submit">Generar Texto</button>
+        </form>
+
+        <div id="resultadoReuniones"></div>
+
+        <button id="btnCopiarReuniones">Copiar texto generado</button>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Función para cambiar entre pestañas
+        function openTab(evt, tabName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(tabName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
+    </script>
+</body>
+</html>
