@@ -353,4 +353,4 @@ function openTab(evt, tabName) {
 }
 
 // Establecer la primera pestaña activa al cargar la página
-document.getElementsByClassName("tablinks")[3].click();
+document.getElementsByClassName("tablinks")[0].click();
