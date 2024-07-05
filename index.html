@@ -14,6 +14,8 @@
         <button class="tablinks" onclick="openTab(event, 'generador')">Sesión Informativa</button>
         <button class="tablinks" onclick="openTab(event, 'reuniones')">Reunión de Avance</button>
         <button class="tablinks" onclick="openTab(event, 'faltas')">Faltas</button>
+        <button class="tablinks" onclick="openTab(event, 'nuevo_ingreso')">Nuevo Ingreso</button>
+
 
     </div>
 
@@ -122,7 +124,130 @@
         </button>
     </form>
     <div id="resultadoFaltas"></div>
-</div>            
+</div> 
+
+<!-- NUEVO INGRESO -->
+<div id="nuevo_ingreso" class="tabcontent">
+    <form id="formularioNuevoIngreso">
+        <label for="alumnoNuevoIngreso">Alumno:</label>
+        <input type="text" id="alumnoNuevoIngreso" name="alumnoNuevoIngreso" required><br><br>
+
+        <label for="fechaNuevoIngreso">Fecha:</label>
+        <input type="date" id="fechaNuevoIngreso" name="fechaNuevoIngreso" required><br><br>
+
+        <label for="modalidadNuevoIngreso">Modalidad:</label>
+        <select id="modalidadNuevoIngreso" name="modalidadNuevoIngreso" required>
+            <option value="" disabled selected>Seleccionar</option>
+            <option value="Presencial">Presencial</option>
+            <option value="Virtual">Virtual</option>
+            <option value="Híbrida">Híbrida</option>
+        </select><br><br>
+
+        <label for="dia1">Día 1:</label>
+        <select id="dia1" name="dia1" required>
+            <option value="" disabled selected>Seleccionar</option>
+            <option value="Lunes">Lunes</option>
+            <option value="Martes">Martes</option>
+            <option value="Miércoles">Miércoles</option>
+            <option value="Jueves">Jueves</option>
+            <option value="Viernes">Viernes</option>
+            <option value="Sábado">Sábado</option>
+        </select>
+        <label for="hora1">Hora 1:</label>
+        <select id="hora1" name="hora1">
+            <option value="11:00">11:00am</option>
+            <option value="11:30">11:30am</option>
+            <option value="12:00">12:00pm</option>
+            <option value="12:30">12:30pm</option>
+            <option value="13:00">1:00pm</option>
+            <option value="13:30">1:30pm</option>
+            <option value="14:00">2:00pm</option>
+            <option value="14:30">2:30pm</option>
+            <option value="15:00">3:00pm</option>
+            <option value="15:30">3:30pm</option>
+            <option value="16:00">4:00pm</option>
+            <option value="16:30">4:30pm</option>
+            <option value="17:00">5:00pm</option>
+            <option value="17:30">5:30pm</option>
+            <option value="18:00">6:00pm</option>
+            <option value="18:30">6:30pm</option>
+        </select><br><br>
+        <label for="dia2">Día 2:</label>
+        <select id="dia2" name="dia2" required>
+            <option value="" disabled selected>Seleccionar</option>
+            <option value="Lunes">Lunes</option>
+            <option value="Martes">Martes</option>
+            <option value="Miércoles">Miércoles</option>
+            <option value="Jueves">Jueves</option>
+            <option value="Viernes">Viernes</option>
+            <option value="Sábado">Sábado</option>
+        </select>
+        <label for="hora2">Hora 2:</label>
+        <select id="hora2" name="hora2">
+            <option value="11:00">11:00am</option>
+            <option value="11:30">11:30am</option>
+            <option value="12:00">12:00pm</option>
+            <option value="12:30">12:30pm</option>
+            <option value="13:00">1:00pm</option>
+            <option value="13:30">1:30pm</option>
+            <option value="14:00">2:00pm</option>
+            <option value="14:30">2:30pm</option>
+            <option value="15:00">3:00pm</option>
+            <option value="15:30">3:30pm</option>
+            <option value="16:00">4:00pm</option>
+            <option value="16:30">4:30pm</option>
+            <option value="17:00">5:00pm</option>
+            <option value="17:30">5:30pm</option>
+            <option value="18:00">6:00pm</option>
+            <option value="18:30">6:30pm</option>
+        </select><br><br>
+        
+        <label><input type="checkbox" id="tercerDia" name="tercerDia"> ¿Tercer día?</label><br><br>
+
+        <div id="tercerDiaContenido" style="display:none;">
+            <label for="dia3">Día 3:</label>
+            <select id="dia3" name="dia3">
+                <option value="" disabled selected>Seleccionar</option>
+                <option value="Lunes">Lunes</option>
+                <option value="Martes">Martes</option>
+                <option value="Miércoles">Miércoles</option>
+                <option value="Jueves">Jueves</option>
+                <option value="Viernes">Viernes</option>
+                <option value="Sábado">Sábado</option>
+            </select>
+            <label for="hora3">Hora 3:</label>
+            <select id="hora3" name="hora3">
+                <option value="11:00">11:00am</option>
+                <option value="11:30">11:30am</option>
+                <option value="12:00">12:00pm</option>
+                <option value="12:30">12:30pm</option>
+                <option value="13:00">1:00pm</option>
+                <option value="13:30">1:30pm</option>
+                <option value="14:00">2:00pm</option>
+                <option value="14:30">2:30pm</option>
+                <option value="15:00">3:00pm</option>
+                <option value="15:30">3:30pm</option>
+                <option value="16:00">4:00pm</option>
+                <option value="16:30">4:30pm</option>
+                <option value="17:00">5:00pm</option>
+                <option value="17:30">5:30pm</option>
+                <option value="18:00">6:00pm</option>
+                <option value="18:30">6:30pm</option>
+            </select><br><br>
+        </div>
+
+        <button type="submit">Generar Texto</button>
+        <button type="button" id="btnCopiarNuevoIngreso">
+            <i class="fa-solid fa-copy"></i> Copiar
+        </button>
+        <button type="reset" id="btnResetNuevoIngreso">
+            <i class="fa-solid fa-delete-left"></i> Limpiar
+        </button><br><br>
+    </form>
+
+    <div id="resultadoNuevoIngreso"></div>
+</div>
+
 
     <script src="script.js"></script>
     <script>

@@ -161,49 +161,140 @@ document.getElementById("formularioReuniones").addEventListener("submit", functi
     mostrarMensajeCopiado("resultadoReuniones");
 });
 
+// Manejar la lógica para mostrar/ocultar el tercer día en el formulario de Nuevo Ingreso
+document.getElementById("tercerDia").addEventListener("change", function() {
+    var tercerDiaContenido = document.getElementById("tercerDiaContenido");
+    if (this.checked) {
+        tercerDiaContenido.style.display = "block";
+    } else {
+        tercerDiaContenido.style.display = "none";
+    }
+});
+
+function formatearHora(hora) {
+    const [horaComponentes, minutoComponentes] = hora.split(":");
+    let horaFormateada = parseInt(horaComponentes);
+    let periodo = 'am';
+
+    if (horaFormateada >= 12) {
+        periodo = 'pm';
+        if (horaFormateada > 12) {
+            horaFormateada -= 12;
+        }
+    }
+    if (horaFormateada === 0) {
+        horaFormateada = 12;
+    }
+
+    return `${horaFormateada}:${minutoComponentes} ${periodo}`;
+}
+
+
+// Generar texto personalizado para el formulario de Nuevo Ingreso
+document.getElementById("formularioNuevoIngreso").addEventListener("submit", function(event) {
+    event.preventDefault(); // Evitar el envío del formulario por defecto
+
+    // Obtener valores de los campos
+    var alumno = document.getElementById("alumnoNuevoIngreso").value;
+    var fechaSeleccionada = new Date(document.getElementById("fechaNuevoIngreso").value);
+    var modalidad = document.getElementById("modalidadNuevoIngreso").value;
+    var dia1 = document.getElementById("dia1").value;
+    var hora1 = formatearHora(document.getElementById("hora1").value);
+    var dia2 = document.getElementById("dia2").value;
+    var hora2 = formatearHora(document.getElementById("hora2").value);
+    var textoGenerado = `*. : | NUEVO INGRESO | : .*<br><br>*${alumno}* se incorpora a Kumon Coyoacán Oriente.<br>*Primera sesión: ${formatoFecha(fechaSeleccionada)}.*<br><br>Horarios:<br>${dia1} - ${hora1}<br>${dia2} - ${hora2}<br><br>Modalidad: ${modalidad}<br><br>Asistente: `;
+
+        // Obtener día de la semana (0: Domingo, 1: Lunes, ..., 6: Sábado)
+        var diaSemana = fechaSeleccionada.getDay();
+
+        // Validar que no sea domingo (0)
+        if (diaSemana === 6) {
+            alert("No puedes seleccionar un evento para un domingo.");
+            return; // Detener la ejecución del código
+        }
+
+
+    // Comprobar si el checkbox de Tercer día está seleccionado
+    if (document.getElementById("tercerDia").checked) {
+        var dia3 = document.getElementById("dia3").value;
+        var hora3 = (document.getElementById("hora3").value);
+        textoGenerado += `<br>Día 3: ${dia3} a las ${hora3}`;
+    }
+
+    // Mostrar el texto generado en la página
+    document.getElementById("resultadoNuevoIngreso").innerHTML = textoGenerado;
+
+    // Copiar texto generado al portapapeles
+    copiarTextoAlPortapapeles(textoGenerado);
+});
+
+// Configurar el botón para copiar el texto generado al portapapeles automáticamente
+var btnCopiarNuevoIngreso = document.getElementById("btnCopiarNuevoIngreso");
+btnCopiarNuevoIngreso.addEventListener("click", function() {
+    copiarTextoAlPortapapeles(document.getElementById("resultadoNuevoIngreso").innerHTML);
+});
+
+// Función para copiar texto al portapapeles
+function copiarTextoAlPortapapeles(texto) {
+    var textarea = document.createElement("textarea");
+    textarea.value = texto.replace(/<br>/g, "\n");
+    textarea.style.position = "fixed";
+    document.body.appendChild(textarea);
+    textarea.select();
+    document.execCommand("copy");
+    document.body.removeChild(textarea);
+}
+
+
+
+
+
+
 
 
                 // FALTAS
 
-                document.getElementById("formularioFaltas").addEventListener("submit", function(event) {
-                    event.preventDefault(); // Evitar el envío del formulario por defecto
-                
-                    // Obtener valores de los campos
-                    var alumno = document.getElementById("alumnoFaltas").value;
-                    var motivo = document.getElementById("motivoFaltas").value;
-                    var solicitaMaterial = document.getElementById("solicitaMaterial").checked;
-                    var cuandoPasan = document.getElementById("cuandoPasan").value;
-                
-                    // Construir el texto generado
-                    var textoGenerado = `*. : | INCIDENCIA | : .*<br><br>El alumno *${alumno}* no asiste a la sesión de hoy.<br>*Motivo*: ${motivo}<br><br>`;
-                    textoGenerado += solicitaMaterial ? `✅ *Solicita material* ✅<br>Pasarán por el ${cuandoPasan}<br><br>` : `❌ *No solicita material* ❌<br><br>`;
-                
-                    // Mostrar el texto generado en la página
-                    document.getElementById("resultadoFaltas").innerHTML = `<p>${textoGenerado}</p>`;
-                
-                    // Copiar texto generado al portapapeles
-                    copiarTextoAlPortapapeles(textoGenerado);
-                
-                    // Mostrar mensaje de copiado
-                    mostrarMensajeCopiado("resultadoFaltas");
-                });
+    document.getElementById("formularioFaltas").addEventListener("submit", function(event) {
+        event.preventDefault(); // Evitar el envío del formulario por defecto
+    
+        // Obtener valores de los campos
+        var alumno = document.getElementById("alumnoFaltas").value;
+        var motivo = document.getElementById("motivoFaltas").value;
+        var solicitaMaterial = document.getElementById("solicitaMaterial").checked;
+        var cuandoPasan = document.getElementById("cuandoPasan").value;
+    
+        // Construir el texto generado
+        var textoGenerado = `*. : | INCIDENCIA | : .*<br><br>El alumno *${alumno}* no asiste a la sesión de hoy.<br>*Motivo*: ${motivo}<br><br>`;
+        textoGenerado += solicitaMaterial ? `✅ *Solicita material* ✅<br>Pasarán por el ${cuandoPasan}<br><br>` : `❌ *No solicita material* ❌<br><br>`;
+    
+        // Mostrar el texto generado en la página
+        document.getElementById("resultadoFaltas").innerHTML = `<p>${textoGenerado}</p>`;
+    
+        // Copiar texto generado al portapapeles
+        copiarTextoAlPortapapeles(textoGenerado);
+    
+        // Mostrar mensaje de copiado
+        mostrarMensajeCopiado("resultadoFaltas");
+    });
 
-                // Mostrar u ocultar el campo "Cuando pasan" basado en el checkbox
+    // Mostrar u ocultar el campo "Cuando pasan" basado en el checkbox
 document.getElementById("solicitaMaterial").addEventListener("change", function() {
     var cuandoPasanDiv = document.getElementById("cuandoPasanDiv");
     cuandoPasanDiv.style.display = this.checked ? "block" : "none";
 });
 
-// Función para formatear la fecha
 function formatoFecha(fecha) {
+    // Convertir la fecha a la zona horaria local
+    var fechaLocal = new Date(fecha.getTime() + fecha.getTimezoneOffset() * 60000);
+
     var diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-    var nombreDia = diasSemana[fecha.getDay()];
-    var numeroDia = fecha.getDate();
+    var nombreDia = diasSemana[fechaLocal.getDay()];
+    var numeroDia = fechaLocal.getDate();
     var meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-    var nombreMes = meses[fecha.getMonth()];
+    var nombreMes = meses[fechaLocal.getMonth()];
+
     return `${nombreDia}, ${numeroDia} de ${nombreMes}`;
 }
-
 
 
 
@@ -214,7 +305,7 @@ function formatoHora(fecha) {
     var ampm = horas >= 12 ? 'pm' : 'am';
     horas = horas % 12;
     horas = horas ? horas : 12; // La hora '0' debe ser '12'
-    return `${horas}:${minutos < 10 ? '0' + minutos : minutos}${ampm}`;
+    return `${horas}:${minutos < 10 ? '0' + minutos : minutos} ${ampm}`;
 }
 
 // Función para copiar texto al portapapeles
@@ -262,4 +353,4 @@ function openTab(evt, tabName) {
 }
 
 // Establecer la primera pestaña activa al cargar la página
-document.getElementsByClassName("tablinks")[2].click();
+document.getElementsByClassName("tablinks")[3].click();
