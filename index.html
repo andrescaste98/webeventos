@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generador de Texto Personalizado</title>
+    <title>Generador de Texto</title>
     <link rel="stylesheet" href="styles.css">
     <style>@import url('https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&display=swap');</style>
     <script src="https://kit.fontawesome.com/d457bfe0e2.js" crossorigin="anonymous"></script>
@@ -13,7 +13,8 @@
     <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'generador')">Sesión Informativa</button>
         <button class="tablinks" onclick="openTab(event, 'reuniones')">Reunión de Avance</button>
-        
+        <button class="tablinks" onclick="openTab(event, 'faltas')">Faltas</button>
+
     </div>
 
                     <!-- SESION INFORMATIVA, EXAMENES Y RESULTADOS -->
@@ -95,13 +96,33 @@
             <button id="btnCopiarReuniones">
                 <i class="fa-solid fa-copy"></i> Copiar
             </button>
-    
         </form>
-
-
         <div id="resultadoReuniones"></div>
 
-</div>
+    </div>
+
+<!-- FALTAS -->
+<div id="faltas" class="tabcontent">
+    <form id="formularioFaltas">
+        <label for="alumnoFaltas">Alumno:</label>
+        <input type="text" id="alumnoFaltas" name="alumnoFaltas" required><br><br>
+        
+        <label for="motivoFaltas">Motivo:</label>
+        <input type="text" id="motivoFaltas" name="motivoFaltas" required><br><br>
+        
+        <label><input type="checkbox" id="solicitaMaterial" name="solicitaMaterial"> Solicita material</label><br><br>
+        
+        <div id="cuandoPasanDiv" style="display: none;">
+            <label for="cuandoPasan">¿Cuándo pasan por el material?:</label>
+            <input type="text" id="cuandoPasan" name="cuandoPasan"><br><br>
+        </div>
+        
+        <button type="submit">Generar Texto</button>
+        <button id="btnCopiarFaltas"><i class="fa-solid fa-copy"></i> Copiar
+        </button>
+    </form>
+    <div id="resultadoFaltas"></div>
+</div>            
 
     <script src="script.js"></script>
     <script>

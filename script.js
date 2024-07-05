@@ -40,7 +40,7 @@ document.getElementById("formularioGenerador").addEventListener("submit", functi
         return; // Detener la ejecución del código
     }
 
-    // Validar que no se seleccionen los tres checkboxes al mismo tiempo
+    // Validar que no se seleccionen los tres checkboxes al mismo tiempo    
     if (sesionInformativa && examenDiagnostico && entregaResultados) {
         alert("No puedes seleccionar los tres checkboxes al mismo tiempo.");
         return; // Detener la ejecución del código
@@ -148,8 +148,7 @@ document.getElementById("formularioReuniones").addEventListener("submit", functi
         return; // Detener la ejecución del código
     }
     // Construir el texto generado
-    var textoGenerado = `
-        Buenas tardes.<br><br>Nos gustaría agendar con usted una *Reunión de Avances*, en donde se tratarán temas relacionados con el desempeño de *${alumno}*, y también podremos solventar sus dudas o inquietudes.<br><br>Detalles de la reunión:<br>📅  *${formatoFecha(fecha)}*<br>🕓  *${formatoHora(fecha)}*<br><br>La reunión será llevada a cabo por *Zoom*.<br>Utilice el siguiente enlace para acceder a la reunión:<br>🔗  https://kumon.zoom.us/j/81600498243?pwd=TTk2Q1E3TW1PSVV1MXdJeXNvb2lJdz09<br><br>*¿Confirmamos la reunión o le gustaría agendar otro día?*`
+    var textoGenerado = `Buenas tardes.<br><br>Nos gustaría agendar con usted una *Reunión de Avances*, en donde se tratarán temas relacionados con el desempeño de *${alumno}*, y también podremos solventar sus dudas o inquietudes.<br><br>Detalles de la reunión:<br>📅  *${formatoFecha(fecha)}*<br>🕓  *${formatoHora(fecha)}*<br><br>La reunión será llevada a cabo por *Zoom*.<br>Utilice el siguiente enlace para acceder a la reunión:<br>🔗  https://kumon.zoom.us/j/81600498243?pwd=TTk2Q1E3TW1PSVV1MXdJeXNvb2lJdz09<br><br>*¿Confirmamos la reunión o le gustaría agendar otro día?*`
 
 
     // Mostrar el texto generado en la página
@@ -162,6 +161,39 @@ document.getElementById("formularioReuniones").addEventListener("submit", functi
     mostrarMensajeCopiado("resultadoReuniones");
 });
 
+
+
+                // FALTAS
+
+                document.getElementById("formularioFaltas").addEventListener("submit", function(event) {
+                    event.preventDefault(); // Evitar el envío del formulario por defecto
+                
+                    // Obtener valores de los campos
+                    var alumno = document.getElementById("alumnoFaltas").value;
+                    var motivo = document.getElementById("motivoFaltas").value;
+                    var solicitaMaterial = document.getElementById("solicitaMaterial").checked;
+                    var cuandoPasan = document.getElementById("cuandoPasan").value;
+                
+                    // Construir el texto generado
+                    var textoGenerado = `*. : | INCIDENCIA | : .*<br><br>El alumno *${alumno}* no asiste a la sesión de hoy.<br>*Motivo*: ${motivo}<br><br>`;
+                    textoGenerado += solicitaMaterial ? `✅ *Solicita material* ✅<br>Pasarán por el ${cuandoPasan}<br><br>` : `❌ *No solicita material* ❌<br><br>`;
+                
+                    // Mostrar el texto generado en la página
+                    document.getElementById("resultadoFaltas").innerHTML = `<p>${textoGenerado}</p>`;
+                
+                    // Copiar texto generado al portapapeles
+                    copiarTextoAlPortapapeles(textoGenerado);
+                
+                    // Mostrar mensaje de copiado
+                    mostrarMensajeCopiado("resultadoFaltas");
+                });
+
+                // Mostrar u ocultar el campo "Cuando pasan" basado en el checkbox
+document.getElementById("solicitaMaterial").addEventListener("change", function() {
+    var cuandoPasanDiv = document.getElementById("cuandoPasanDiv");
+    cuandoPasanDiv.style.display = this.checked ? "block" : "none";
+});
+
 // Función para formatear la fecha
 function formatoFecha(fecha) {
     var diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
@@ -169,8 +201,11 @@ function formatoFecha(fecha) {
     var numeroDia = fecha.getDate();
     var meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
     var nombreMes = meses[fecha.getMonth()];
-    return `${nombreDia} ${numeroDia} de ${nombreMes}`;
+    return `${nombreDia}, ${numeroDia} de ${nombreMes}`;
 }
+
+
+
 
 // Función para formatear la hora
 function formatoHora(fecha) {
@@ -227,4 +262,4 @@ function openTab(evt, tabName) {
 }
 
 // Establecer la primera pestaña activa al cargar la página
-document.getElementsByClassName("tablinks")[1].click();
+document.getElementsByClassName("tablinks")[2].click();
