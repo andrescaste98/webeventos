@@ -4,6 +4,7 @@ document.getElementById("formularioGenerador").addEventListener("submit", functi
     event.preventDefault(); // Evitar el envío del formulario por defecto
     // Obtener valores de los campos
     var fechaSeleccionada = new Date(document.getElementById("fechaGenerador").value + "T" + document.getElementById("horaGenerador").value);
+	console.log(fechaSeleccionada)
     var nombre = document.getElementById("nombreGenerador").value;
     var telefono = document.getElementById("telefonoGenerador").value;
     var alumno = document.getElementById("alumnoGenerador").value;
@@ -196,19 +197,23 @@ document.getElementById("formularioNuevoIngreso").addEventListener("submit", fun
 
     // Obtener valores de los campos
     var alumno = document.getElementById("alumnoNuevoIngreso").value;
-    var fechaSeleccionada = new Date(document.getElementById("fechaNuevoIngreso").value);
+	var horaFantasma ="12:00"
+	var fecha = new Date(document.getElementById("fechaNuevoIngreso").value + "T" + horaFantasma);
+	console.log(fecha)
+	console.log(horaFantasma)
+
     var modalidad = document.getElementById("modalidadNuevoIngreso").value;
     var dia1 = document.getElementById("dia1").value;
     var hora1 = formatearHora(document.getElementById("hora1").value);
     var dia2 = document.getElementById("dia2").value;
     var hora2 = formatearHora(document.getElementById("hora2").value);
-    var textoGenerado = `*. : | NUEVO INGRESO | : .*<br><br>*${alumno}* se incorpora a Kumon Coyoacán Oriente.<br>*Primera sesión: ${formatoFecha(fechaSeleccionada)}.*<br><br>Horarios:<br>${dia1} - ${hora1}<br>${dia2} - ${hora2}<br><br>Modalidad: ${modalidad}<br><br>Asistente: `;
+    var textoGenerado = `*. : | NUEVO INGRESO | : .*<br><br>*${alumno}* se incorpora a Kumon Coyoacán Oriente.<br>*Primera sesión: ${formatoFecha(fecha)}.*<br><br>Horarios:<br>${dia1} - ${hora1}<br>${dia2} - ${hora2}<br><br>Modalidad: ${modalidad}<br><br>Asistente: `;
 
         // Obtener día de la semana (0: Domingo, 1: Lunes, ..., 6: Sábado)
-        var diaSemana = fechaSeleccionada.getDay();
+        var diaSemana = fecha.getDay();
 
         // Validar que no sea domingo (0)
-        if (diaSemana === 6) {
+        if (diaSemana === 0) {
             alert("No puedes seleccionar un evento para un domingo.");
             return; // Detener la ejecución del código
         }
@@ -284,15 +289,11 @@ document.getElementById("solicitaMaterial").addEventListener("change", function(
 });
 
 function formatoFecha(fecha) {
-    // Convertir la fecha a la zona horaria local
-    var fechaLocal = new Date(fecha.getTime() + fecha.getTimezoneOffset() * 60000);
-
     var diasSemana = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado'];
-    var nombreDia = diasSemana[fechaLocal.getDay()];
-    var numeroDia = fechaLocal.getDate();
+    var nombreDia = diasSemana[fecha.getDay()];
+    var numeroDia = fecha.getDate();
     var meses = ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre'];
-    var nombreMes = meses[fechaLocal.getMonth()];
-
+    var nombreMes = meses[fecha.getMonth()];
     return `${nombreDia}, ${numeroDia} de ${nombreMes}`;
 }
 
@@ -353,4 +354,4 @@ function openTab(evt, tabName) {
 }
 
 // Establecer la primera pestaña activa al cargar la página
-document.getElementsByClassName("tablinks")[0].click();
+document.getElementsByClassName("tablinks")[3].click();
