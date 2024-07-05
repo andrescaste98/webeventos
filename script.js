@@ -5,6 +5,7 @@ document.getElementById("formularioGenerador").addEventListener("submit", functi
     // Obtener valores de los campos
     var fechaSeleccionada = new Date(document.getElementById("fechaGenerador").value + "T" + document.getElementById("horaGenerador").value);
     var nombre = document.getElementById("nombreGenerador").value;
+    var telefono = document.getElementById("telefonoGenerador").value;
     var alumno = document.getElementById("alumnoGenerador").value;
     var edad = document.getElementById("edad").value;
     var gradoEscolarTexto = document.getElementById("gradoEscolarTexto").value;
@@ -68,7 +69,7 @@ document.getElementById("formularioGenerador").addEventListener("submit", functi
         textoGenerado += "Matemáticas ";
     }
     if (lectura) {
-        textoGenerado += " Lectura ";
+        textoGenerado += "Lectura ";
     }
     if (ingles) {
         textoGenerado += "Inglés";
@@ -80,7 +81,7 @@ document.getElementById("formularioGenerador").addEventListener("submit", functi
     }
 
     // Agregar el texto principal después de los checkboxes
-    textoGenerado += `<br><br>🧑🏻 *${nombre}*<br>🗓 *${formatoFecha(fechaSeleccionada)}*<br>🕒 *${formatoHora(fechaSeleccionada)}*<br>📍 *${modalidadGenerador}*<br>-------------------------<br>*Información del alumno:*<br><br>${alumno}, ${edad} años<br>${gradoEscolarTexto}° de ${gradoEscolarSelect}`;
+    textoGenerado += `<br><br>🧑🏻  *${nombre}*<br>📅  *${formatoFecha(fechaSeleccionada)}*<br>🕓  *${formatoHora(fechaSeleccionada)}*<br>📍 *${modalidadGenerador}*<br>☎  *${telefono}*<br>-------------------------<br>*Información del alumno:*<br><br>${alumno}, ${edad} años<br>${gradoEscolarTexto}° de ${gradoEscolarSelect}`;
 
     // Mostrar el texto generado en la página
     document.getElementById("resultadoGenerador").innerHTML = textoGenerado;
@@ -136,7 +137,6 @@ document.getElementById("formularioReuniones").addEventListener("submit", functi
     // Obtener valores de los campos
     var fecha = new Date(document.getElementById("fechaReuniones").value + "T" + document.getElementById("horaReuniones").value);
     var alumno = document.getElementById("alumno").value;
-    var modalidadReuniones = document.getElementById("gradoEscolar").value;
 
 
     // Obtener día de la semana (0: Domingo, 1: Lunes, ..., 6: Sábado)
@@ -147,21 +147,10 @@ document.getElementById("formularioReuniones").addEventListener("submit", functi
         alert("No puedes seleccionar un evento para un domingo.");
         return; // Detener la ejecución del código
     }
-
-    // Obtener valor de la lista desplegable para la modalidad
-    var modalidad = document.getElementById("modalidadReuniones").value;
-
     // Construir el texto generado
-    var textoGenerado = `Reunión de Avance para ${alumno} programada para el ${formatoFecha(fecha)} a las ${formatoHora(fecha)}.`;
+    var textoGenerado = `
+        Buenas tardes.<br><br>Nos gustaría agendar con usted una *Reunión de Avances*, en donde se tratarán temas relacionados con el desempeño de *${alumno}*, y también podremos solventar sus dudas o inquietudes.<br><br>Detalles de la reunión:<br>📅  *${formatoFecha(fecha)}*<br>🕓  *${formatoHora(fecha)}*<br><br>La reunión será llevada a cabo por *Zoom*.<br>Utilice el siguiente enlace para acceder a la reunión:<br>🔗  https://kumon.zoom.us/j/81600498243?pwd=TTk2Q1E3TW1PSVV1MXdJeXNvb2lJdz09<br><br>*¿Confirmamos la reunión o le gustaría agendar otro día?*`
 
-    // Agregar la modalidad de la reunión al texto generado
-    if (modalidad === "virtual") {
-        textoGenerado += "<br>🖥 *Modalidad: Virtual* 🖥";
-    } else if (modalidad === "presencial") {
-        textoGenerado += "<br>🏫 *Modalidad: Presencial* 🏫";
-    } else if (modalidad === "hibrida") {
-        textoGenerado += "<br>🔄 *Modalidad: Híbrida* 🔄";
-    }
 
     // Mostrar el texto generado en la página
     document.getElementById("resultadoReuniones").innerHTML = `<p>${textoGenerado}</p>`;
@@ -238,4 +227,4 @@ function openTab(evt, tabName) {
 }
 
 // Establecer la primera pestaña activa al cargar la página
-document.getElementsByClassName("tablinks")[0].click();
+document.getElementsByClassName("tablinks")[1].click();

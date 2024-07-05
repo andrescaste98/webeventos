@@ -13,13 +13,16 @@
     <div class="tab">
         <button class="tablinks" onclick="openTab(event, 'generador')">Sesión Informativa</button>
         <button class="tablinks" onclick="openTab(event, 'reuniones')">Reunión de Avance</button>
+        
     </div>
+
+                    <!-- SESION INFORMATIVA, EXAMENES Y RESULTADOS -->
 
     <div id="generador" class="tabcontent"><br>
         <form id="formularioGenerador">
             <label><input type="checkbox" id="sesion_informativa" name="sesion_informativa"><span>Sesión informativa</span></label>
             <label><input type="checkbox" id="examen_diagnostico" name="examen_diagnostico"><span>Examen Diagnóstico</span></label>
-            <label><input type="checkbox" id="entrega_resultados" name="entrega_resultados"><span>Entrega de resultados</span></label>
+            <label><input type="checkbox" id="entrega_resultados" name="entrega_resultados"><span>Entrega de resultados</span></label><br><br>
 
 
             <label for="fechaGenerador">Fecha:</label>
@@ -29,7 +32,10 @@
             <input type="time" id="horaGenerador" name="horaGenerador" required><br><br>
             
             <label for="nombreGenerador">Padre/Madre:</label>
-            <input type="text" id="nombreGenerador" name="nombreGenerador" required><br><br>
+            <input type="text" id="nombreGenerador" name="nombreGenerador" required>
+            
+            <label for="telefonoGenerador">Teléfono:</label>
+            <input type="text" id="telefonoGenerador" name="telefonoGenerador" required><br><br>
 
             <label for="alumnoGenerador">Alumno:</label>
             <input type="text" id="alumnoGenerador" name="alumnoGenerador" required>
@@ -51,7 +57,6 @@
             <label><input type="checkbox" name="ingles"> Inglés</label><br><br>
 
 
-            <!-- Reemplazar los checkboxes por una lista desplegable -->
             <label for="modalidadGenerador">Modalidad:</label>
             <select id="modalidadGenerador" name="modalidadGenerador">
                 <option value="" disabled selected >Seleccionar</option>
@@ -73,6 +78,8 @@
 
     </div>
 
+                   <!-- REUNIONES DE AVANCE -->
+
     <div id="reuniones" class="tabcontent">
         <form id="formularioReuniones">
             <label for="fechaReuniones">Fecha:</label>
@@ -84,13 +91,6 @@
             <label for="alumno">Alumno:</label>
             <input type="text" id="alumno" name="alumno" required><br><br>
             
-            <!-- Reemplazar los checkboxes por una lista desplegable -->
-            <label for="modalidadReuniones">Modalidad:</label>
-            <select id="modalidadReuniones" name="modalidadReuniones">
-                <option value="virtual" selected >Virtual</option>
-                <option value="presencial">Presencial</option>
-            </select><br><br>
-
             <button type="submit">Generar Texto</button>
             <button id="btnCopiarReuniones">
                 <i class="fa-solid fa-copy"></i> Copiar
